@@ -9,9 +9,10 @@ Bureaucrat::Bureaucrat(std::string const& name, int grade)
 : name_(name)
 {
 	if (grade > 150)
-		throw Bureaucrat::GradeTooHighException();
-	else if (grade < 1)
 		throw Bureaucrat::GradeTooLowException();
+	else if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	grade_ = grade;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const& ori)
@@ -33,8 +34,8 @@ Bureaucrat&	Bureaucrat::operator=(Bureaucrat const& rhs)
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat const& rhs)
 {
-	o << rhs.getName() <<  " bureaucrat grade "
-		<< rhs.getGrade() << "." << std::endl;
+	o << rhs.getName() <<  ", bureaucrat grade "
+		<< rhs.getGrade() << ".";
 	return o;
 }
 
@@ -45,7 +46,7 @@ void	Bureaucrat::increment()
 	std::cout << "Incrementing " << name_ << "'s grade"
 		<< std::endl;
 	if (grade_ - 1 < 1)
-		throw Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooHighException();
 	grade_ -= 1;
 }
 
@@ -54,7 +55,7 @@ void	Bureaucrat::decrement()
 	std::cout << "Decrementing " << name_ << "'s grade"
 		<< std::endl;
 	if (grade_ + 1 > 150)
-		throw Bureaucrat::GradeTooHighException();
+		throw Bureaucrat::GradeTooLowException();
 	grade_ += 1;
 
 }
@@ -85,12 +86,12 @@ void	Bureaucrat::setGrade(int grade)
 
 // DEFINING EXCEPTIONS ----------------------------------
 
-const char *Bureaucrat::GradeTooLowException::what() const
+const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return "Grade must be above 1 at least!";
+	return "Grade is too low! Must be < 150 and > 1. 150 being the lowest rank.";
 }
 
-const char *Bureaucrat::GradeTooHighException::what() const
+const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return "Grade must be lower than or equal to 150!";
+	return "Grade is too high! Must be < 150 and > 1. 1 being the highest rank.";
 }
