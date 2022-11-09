@@ -1,5 +1,7 @@
-#include "Bureaucrat.hpp"
 
+
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 # define ORANGERED1 "\033[38;5;202m"
 # define RESET "\033[0m"
 
@@ -18,18 +20,17 @@ int main(int argc, char **argv)
 		{
 			std::cout << ORANGERED1 << "TEST #1" << RESET << std::endl;
 			std::cout << "-----------------------------------------" << std::endl;
-			Bureaucrat a("Obelix", 127);
-			Bureaucrat b("Asterix", 4);
 			std::cout << "Testing accessors..." << std::endl;
 			std::cout << std::endl;
-			std::cout << "My name is " << a.getName() << " and my grade is "
-				<< a.getGrade() << std::endl;
-			std::cout << "My name is " << b.getName() << " and my grade is "
-				<< b.getGrade() << std::endl;
-			std::cout << "Testing << overload..." << std::endl;
-			std::cout << a << std::endl;
-			std::cout << b << std::endl;
+			Form a38("a38", 100, 130);
+			std::cout << "Name is : " << a38.getName() << std::endl;
+			std::cout << "Is it signed ? 0 or 1 : " << a38.getSigned() << std::endl;
+			std::cout << "GradeSign is : " << a38.getGradeSign() << std::endl;
+			std::cout << "GradeEx is : " << a38.getGradeEx() << std::endl;
+			std::cout << std::endl;
 
+			std::cout << "Testing overload << " << std::endl;
+			std::cout << a38 << std::endl;
 		}
 		else if (arg == "2")
 		{
@@ -37,9 +38,10 @@ int main(int argc, char **argv)
 			std::cout << "-----------------------------------------" << std::endl;
 			std::cout << "Testing setting a grade too low..." << std::endl;
 			std::cout << std::endl;
-			Bureaucrat c("Tolow", 151);
-			std::cout << "My name is " << c.getName() << " and my grade is "
-				<< c.getGrade() << std::endl;
+			Form c("Tolow", 151, 4);
+			std::cout << "DEBUG : YOU SHOULD'T SEE THIS" << std::endl;
+			Form cp("Tolow", 4, 151);
+			std::cout << "DEBUG : YOU SHOULD'T SEE THIS" << std::endl;
 		}
 		else if (arg == "3")
 		{
@@ -47,28 +49,35 @@ int main(int argc, char **argv)
 			std::cout << "-----------------------------------------" << std::endl;
 			std::cout << "Testing setting a grade too high..." << std::endl;
 			std::cout << std::endl;
-			Bureaucrat d("Tohigh", 0);
-			std::cout << "My name is " << d.getName() << " and my grade is "
-				<< d.getGrade() << std::endl;
+			Form d("Tohigh", 0, 6);
+			std::cout << "DEBUG : YOU SHOULD'T SEE THIS" << std::endl;
+			Form dp("Tohigh", 6, 0);
+			std::cout << "DEBUG : YOU SHOULD'T SEE THIS" << std::endl;
 		}
 		else if (arg == "4")
 		{
 			std::cout << ORANGERED1 << "TEST #4" << RESET << std::endl;
 			std::cout << "-----------------------------------------" << std::endl;
+			std::cout << "Testing signing process..." << std::endl;
 			std::cout << std::endl;
+
 			Bureaucrat e("Jeff", 2);
+			Form a38("a38", 100, 130);
+
 			std::cout << e << std::endl;
-			std::cout << "Testing incrementing..." << std::endl;
+			std::cout << a38 << std::endl;
+			std::cout << "Jeff is trying to sign form a38..." << std::endl;
 			std::cout << std::endl;
-			e.increment();
-			std::cout << e << std::endl;
-			e.increment();
-			std::cout << e << std::endl;
+			e.signForm(a38);
+
+			Bureaucrat rosa("Rosa", 150);
+			std::cout << rosa << std::endl;
+			std::cout << "Rosa is trying to sign form a38." << std::endl;
 		}
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;;
+		std::cerr << e.what() << std::endl;
 	}
 	return 0;
 }

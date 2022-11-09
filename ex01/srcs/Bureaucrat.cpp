@@ -60,6 +60,24 @@ void	Bureaucrat::decrement()
 
 }
 
+void	Bureaucrat::signForm(Form& form)
+{
+	// if (form.getSigned)
+	// 	std::cout << name_ << " signed" << form << std::endl;
+	// else
+	// 	std::cout << name_ << " couldn 't sign form because his grade is too low."
+	// 		<< std::endl;
+
+	try
+	{
+		form.beSigned(*this);
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+}
+
 // -- GETTERS ----------------------------------
 
 std::string const& Bureaucrat::getName() const
