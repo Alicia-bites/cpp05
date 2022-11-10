@@ -12,6 +12,10 @@
 # define RED1 "\033[38;5;196m"
 # define STEELBLUE2 "\033[38;5;75m"
 # define SLATEBLUE1 "\033[38;5;99m"
+# define LIGHTSEAGREEN "\033[38;5;37m"
+# define LIGHTSKYBLUE2 "\033[38;5;109m"
+# define SALMON1 "\033[38;5;209m"
+# define DEEPSKYBLUE1 "\033[38;5;39m"
 # define RESET "\033[0m"
 
 class Bureaucrat;
@@ -24,10 +28,10 @@ class Form
 		bool				signed_;
 		int const			gradeSign_; // 150 to 1
 		int const			gradeEx_; // 150 to 1
+
 	public :
 		Form();
 		Form(std::string name, int gradeSign_, int gradeEx);
-		// Form(std::string name, std::string target, int gradeSign_, int gradeEx);
 		Form(Form const& ori);
 		~Form();
 		Form& operator=(Form const& rhs);
@@ -38,7 +42,8 @@ class Form
 		int					getGradeEx() const;
 
 		virtual void		beSigned(Bureaucrat& bureaucrat);
-		void				execute(Bureaucrat const & executor);
+		virtual void		executeChildren() const = 0;
+		void				execute(Bureaucrat const& executor) const;
 
 		class GradeTooLowException : public std::exception
 		{
@@ -47,6 +52,12 @@ class Form
 		};
 
 		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
+		class FormNotSigned : public std::exception
 		{
 			public:
 				const char *what() const throw();

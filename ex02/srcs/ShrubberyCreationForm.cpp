@@ -23,24 +23,26 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const& ori)
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {}
 
-// OPERATORS OVERLOAD
+// OPERATORS OVERLOAD ---------------------------------------------------------------------------------
 ShrubberyCreationForm&	ShrubberyCreationForm::operator=(ShrubberyCreationForm const& rhs)
 {
 	Form::operator=(rhs);
 	return *this;
 }
 
-void	ShrubberyCreationForm::createFile()
+// MEMBER FUNCTIONS ---------------------------------------------------------------------------------
+
+void	ShrubberyCreationForm::createFile() const
 {
 	std::ofstream	newFile;
-	std::string 	name = target_ + "_Sam Rockwellshrubbery";
+	std::string 	name = target_ + "_shrubbery";
 
 	std::cout << SLATEBLUE1 << "Creating new file named : " << name
 		<< RESET << std::endl;
 	newFile.open(name.c_str(), std::ios::out | std::ios::trunc);
 	if (!newFile.good())
 	{
-		std::cout << RED1 << "An error occured while opening file." << std::endl;
+		std::cout << RED1 << "An error occured while opening file." << RESET << std::endl;
 	}
 	newFile <<    
 	"                                ###############\n"
@@ -70,5 +72,7 @@ void	ShrubberyCreationForm::createFile()
 	newFile.close();
 }								
 
-
-                                                                                                
+void	ShrubberyCreationForm::executeChildren() const
+{
+	createFile();
+}

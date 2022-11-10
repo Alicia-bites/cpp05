@@ -24,7 +24,7 @@ class Bureaucrat
 		int					getGrade() const;
 
 		void				setGrade(int grade);
-		
+	
 		void				increment();
 		void				decrement();
 
@@ -42,6 +42,8 @@ class Bureaucrat
 
 		// ex01 add-ons :
 		void	signForm(Form& form);
+		//ex02 add-ons
+		void	execute(Form const& form) const;
 };
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat const& rhs);

@@ -21,20 +21,6 @@ Form::Form(std::string name, int gradeSign, int gradeEx)
 		throw Form::GradeTooLowException();
 }
 
-// Param2 constructor
-// Form::Form(std::string name, std::string target, int gradeSign, int gradeEx)
-// : name_(name)
-// , target_(target)
-// , signed_(0)
-// , gradeSign_(gradeSign)
-// , gradeEx_ (gradeEx)
-// {
-	// if (gradeSign_ < 1 || gradeEx_ < 1)
-		// throw Form::GradeTooHighException();
-	// if (gradeSign_ > 150 || gradeEx_ > 150)
-		// throw Form::GradeTooLowException();
-// }
-
 // copy constructor
 Form::Form(Form const& ori)
 : name_(ori.name_)
@@ -109,10 +95,19 @@ int		Form::getGradeEx() const
 
 void	Form::beSigned(Bureaucrat& bureaucrat)
 {
-	if (bureaucrat.getGrade() < gradeSign_)
+	if (bureaucrat.getGrade() > gradeSign_)
 		throw Form::GradeTooLowException();
 	signed_ = 1;
 
+}
+
+void	Form::execute(const Bureaucrat& executor) const
+{
+	if (executor.getGrade() > gradeEx_)
+		throw GradeTooLowException();
+	if (!signed_)
+		throw FormNotSigned();
+	executeChildren();
 }
 // - SETTERS -------------------------------------------
 
@@ -128,3 +123,9 @@ const char *Form::GradeTooHighException::what() const throw()
 {
 	return "Grade is too high!";
 }
+
+const char *Form::FormNotSigned::what() const throw()
+{
+	return "An usigned form cannot be executed.";
+}
+

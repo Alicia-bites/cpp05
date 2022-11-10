@@ -62,20 +62,16 @@ void	Bureaucrat::decrement()
 
 void	Bureaucrat::signForm(Form& form)
 {
-	// if (form.getSigned)
-	// 	std::cout << name_ << " signed" << form << std::endl;
-	// else
-	// 	std::cout << name_ << " couldn 't sign form because his grade is too low."
-	// 		<< std::endl;
-
 	try
 	{
 		form.beSigned(*this);
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << RED1 << e.what() << RESET << std::endl;
+		return ;
 	}
+	std::cout << form.getName() << " has been signed by " << name_ << "." << std::endl;
 }
 
 // -- GETTERS ----------------------------------
@@ -101,6 +97,21 @@ void	Bureaucrat::setGrade(int grade)
 	std::cout << "Setting " << name_ << "'s grade to : " << grade
 		<< std::endl;
 }
+
+void	Bureaucrat::execute(Form const& form) const
+{
+	try
+	{
+		form.execute(*this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << RED1 << e.what() << RESET <<  '\n';
+		return ;
+	}
+	std::cout << name_ << " executed " << form.getName() << "." << std::endl;
+}
+
 
 // DEFINING EXCEPTIONS ----------------------------------
 

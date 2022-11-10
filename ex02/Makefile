@@ -18,6 +18,9 @@ SRCS			:=	main.cpp \
 					Bureaucrat.cpp \
 					Form.cpp \
 					ShrubberyCreationForm.cpp \
+					RobotomyRequestForm.cpp \
+					PresidentialPardonForm.cpp \
+					
 
 OBJS			:=	$(addprefix $(OPATH)/, $(SRCS:.cpp=.o))
 DEPS			:=	$(OBJS:.o=.d)
