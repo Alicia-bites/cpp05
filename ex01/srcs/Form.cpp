@@ -47,16 +47,24 @@ Form&	Form::operator=(Form const& rhs)
 std::ostream&	operator<<(std::ostream& o, Form const& rhs)
 {
 	o << "Form name is : "
+		<< SPRINGGREEN6
 		<< rhs.getName()
+		<< RESET
 		<< std::endl
 		<< "Is it signed? 0 for no, 1 for yes --> "
+		<< SPRINGGREEN4
 		<< rhs.getSigned()
+		<< RESET
 		<< std::endl
 		<< "Grade required to sign : "
+		<< SPRINGGREEN5
 		<< rhs.getGradeSign()
+		<< RESET
 		<< std::endl
 		<< "Grade required to execute : "
+		<< SPRINGGREEN3
 		<< rhs.getGradeEx()
+		<< RESET
 		<< std::endl;
 	return o;
 }

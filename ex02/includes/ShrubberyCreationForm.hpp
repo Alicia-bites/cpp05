@@ -1,37 +1,19 @@
 #pragma once
 
 #include "Form.hpp"
+#include <fstream>
 
 class ShrubberyCreationForm : public Form
 {
 	private :
-		std::string const	name_;
-		bool				signed_;
-		int const			gradeSign_; // 150 to 1
-		int const			gradeEx_; // 150 to 1
+		std::string	target_;
+
 	public :
-		Form();
-		Form(std::string name, int gradeSign_, int gradeEx);
-		Form(Form const& ori);
-		~Form();
-		Form& operator=(Form const& rhs);
+		ShrubberyCreationForm();
+		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm(ShrubberyCreationForm const& ori);
+		~ShrubberyCreationForm();
+		ShrubberyCreationForm&	operator=(ShrubberyCreationForm const& rhs);
 
-		std::string const	getName() const;
-		bool				getSigned() const;
-		int					getGradeSign() const;
-		int					getGradeEx() const;
-
-		virtual void		beSigned(Bureaucrat& bureaucrat) const = 0;
-
-		class GradeTooLowException : public std::exception
-		{
-			public:
-				const char	*what() const throw();
-		};
-
-		class GradeTooHighException : public std::exception
-		{
-			public:
-				const char *what() const throw();
-		};
-};
+		void	createFile();
+};	

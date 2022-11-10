@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 15:07:45 by jallerha          #+#    #+#             */
-/*   Updated: 2022/10/18 17:22:16 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:00:06 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,8 +245,8 @@
 # define SPRINGGREEN2 "\033[38;5;42m"
 # define SPRINGGREEN3 "\033[38;5;47m"
 # define SPRINGGREEN4 "\033[38;5;35m"
-# define SPRINGGREEN5 "\033[38;5;41m"
 # define SPRINGGREEN6 "\033[38;5;29m"
+# define SPRINGGREEN5 "\033[38;5;41m"
 # define STEELBLUE1 "\033[38;5;67m"
 # define STEELBLUE2 "\033[38;5;75m"
 # define STEELBLUE3 "\033[38;5;81m"

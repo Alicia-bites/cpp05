@@ -16,7 +16,8 @@ RM				:=	rm -rf
 
 SRCS			:=	main.cpp \
 					Bureaucrat.cpp \
-					Form.cpp
+					Form.cpp \
+					ShrubberyCreationForm.cpp \
 
 OBJS			:=	$(addprefix $(OPATH)/, $(SRCS:.cpp=.o))
 DEPS			:=	$(OBJS:.o=.d)

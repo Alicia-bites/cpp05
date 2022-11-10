@@ -21,6 +21,20 @@ Form::Form(std::string name, int gradeSign, int gradeEx)
 		throw Form::GradeTooLowException();
 }
 
+// Param2 constructor
+// Form::Form(std::string name, std::string target, int gradeSign, int gradeEx)
+// : name_(name)
+// , target_(target)
+// , signed_(0)
+// , gradeSign_(gradeSign)
+// , gradeEx_ (gradeEx)
+// {
+	// if (gradeSign_ < 1 || gradeEx_ < 1)
+		// throw Form::GradeTooHighException();
+	// if (gradeSign_ > 150 || gradeEx_ > 150)
+		// throw Form::GradeTooLowException();
+// }
+
 // copy constructor
 Form::Form(Form const& ori)
 : name_(ori.name_)
@@ -47,16 +61,24 @@ Form&	Form::operator=(Form const& rhs)
 std::ostream&	operator<<(std::ostream& o, Form const& rhs)
 {
 	o << "Form name is : "
+		<< SPRINGGREEN6
 		<< rhs.getName()
+		<< RESET
 		<< std::endl
 		<< "Is it signed? 0 for no, 1 for yes --> "
+		<< SPRINGGREEN4
 		<< rhs.getSigned()
+		<< RESET
 		<< std::endl
 		<< "Grade required to sign : "
+		<< SPRINGGREEN5
 		<< rhs.getGradeSign()
+		<< RESET
 		<< std::endl
 		<< "Grade required to execute : "
+		<< SPRINGGREEN3
 		<< rhs.getGradeEx()
+		<< RESET
 		<< std::endl;
 	return o;
 }
